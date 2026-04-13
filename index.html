@@ -1,0 +1,426 @@
+<!doctype html>
+<html lang="en" translate="no">
+<meta charset="UTF-8" />
+<meta name="color-scheme" content="dark" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="theme-color" content="#000000" />
+<title>mehro</title>
+<meta property="og:type" content="website" />
+<meta property="og:title" content="mehro ;3" />
+<meta property="og:site_name" content="mehro" />
+<meta property="og:url" content="https://mehro.me/" />
+<meta property="og:description" content="probably smarter than you" />
+<meta property="og:image" content="https://mehro.me/assets/favicon_io/android-chrome-512x512.png" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="mehro ;3" />
+<meta name="twitter:description" content="probably smarter than you" />
+<meta name="twitter:image" content="https://mehro.me/assets/favicon_io/android-chrome-512x512.png" />
+<meta name="description" content="probably smarter than you" />
+<meta name="author" content="mehro" />
+<link rel="canonical" href="https://mehro.me/" />
+<link rel="apple-touch-icon" sizes="180x180" href="assets/favicon_io/apple-touch-icon.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon_io/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon_io/favicon-16x16.png" />
+<link rel="manifest" href="manifest.webmanifest" />
+<link rel="preload" href="assets/placeholder.png" as="image" />
+<link rel="preconnect" href="https://cdn.discordapp.com/" />
+<link rel="preconnect" href="https://api.stats.fm/" />
+<link rel="preconnect" href="https://lrclib.net/" />
+<link rel="stylesheet" href="assets/style.css" />
+<script defer src="assets/app.js"></script>
+
+<body autocomplete="off" spellcheck="false">
+  <div class="container">
+    <div class="main-grid">
+      <div>
+        <div class="profile-card" id="profile">
+          <img src="#" id="profile-banner" width="500" height="150" draggable="false" />
+          <div class="profile-meta-row">
+            <div id="mobile-view-count" class="meta-badge" style="display: none">
+              <svg class="eye-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path
+                  d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0" />
+                <circle cx="12" cy="12" r="3" />
+              </svg>
+              <span id="mobile-view-text">...</span>
+            </div>
+            <div id="local-time" class="meta-badge">
+              <svg class="clock-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 6v6l4 2" />
+                <circle cx="12" cy="12" r="10" />
+              </svg>
+              <span id="time-text"></span>
+              <img src="assets/icons/666.gif" id="profile-gif" width="100" height="100" draggable="false" />
+            </div>
+          </div>
+          <div id="time-diff-display">...</div>
+          <div class="loading-overlay" id="profile-loader">
+            <span>Loading..</span>
+          </div>
+          <div class="avatar-wrapper">
+            <img src="assets/placeholder.png" class="avatar" id="avatar" width="120" height="120" draggable="false" />
+            <img src="#" class="avatar-decoration" id="avatar-decoration" width="160" height="160" draggable="false" />
+            <img src="#" class="status-indicator" id="status-icon" width="22" height="22" draggable="false" />
+          </div>
+          <div class="username-container">
+            <div class="display-name" id="display-name">
+              <span class="display-name-inner"></span>
+            </div>
+          </div>
+          <div class="username-line">
+            <div class="username-flex">
+              <span class="at-username" id="at-username"></span>
+              <div id="guild-badge" style="display: none">
+                <img id="guild-badge-icon" src="#" width="16" height="16" />
+                <span id="guild-badge-tag"></span>
+              </div>
+              <div class="devices" id="devices"></div>
+            </div>
+          </div>
+          <div class="custom-status" id="custom-status"></div>
+        </div>
+      </div>
+      <div>
+        <div id="main-activity-cards">
+          <div class="spotify-card inactive" id="spotify-card">
+            <div class="loading-overlay" id="spotify-loader">
+              <span>Loading..</span>
+            </div>
+            <svg class="spotify-bg-icon" viewBox="0 0 128 128" role="img" preserveAspectRatio="xMidYMid meet">
+              <g fill="#dce3de">
+                <path
+                  d="M59.01 92.53c-1.16-3.05-4.71-4.54-7.91-3.32l-16.78 6.38L44.5 59.35c.36-1.27.3-2.58-.16-3.8c-1.23-3.23-4.99-4.81-8.39-3.51L8.1 62.62c-1.54.58-2.77 1.7-3.48 3.13c-.73 1.48-.82 3.13-.25 4.64c1.16 3.06 4.73 4.56 7.95 3.34l16.23-6.17l-10.27 36.04c-.37 1.3-.32 2.64.15 3.88c.95 2.5 3.4 4.02 6.04 4.02c.82 0 1.66-.15 2.48-.46l28.36-10.78c3.2-1.22 4.86-4.69 3.7-7.73z">
+                </path>
+                <path
+                  d="M92.6 61.82c-.56-3.29-3.83-5.48-7.28-4.9L67.21 60L84.6 25.63c.61-1.21.81-2.54.59-3.85c-.59-3.49-4.06-5.81-7.73-5.19L47.4 21.72c-1.66.28-3.12 1.15-4.12 2.46c-1.03 1.35-1.44 2.98-1.17 4.61c.56 3.31 3.85 5.51 7.32 4.92l17.52-2.98L49.5 64.88a6.246 6.246 0 0 0-.61 3.93c.46 2.7 2.62 4.71 5.27 5.23c.82.16 1.69.18 2.58.03l30.61-5.21c3.45-.59 5.81-3.75 5.25-7.04z">
+                </path>
+                <path
+                  d="M123.94 74.46c-.18-2.13-2.15-3.71-4.39-3.52l-11.74.99l12.97-21.01c.46-.74.66-1.58.59-2.42c-.19-2.26-2.28-3.93-4.65-3.73L97.25 46.4a4.19 4.19 0 0 0-2.76 1.35c-.73.8-1.08 1.83-.99 2.88c.18 2.14 2.16 3.73 4.41 3.54l11.35-.96l-13 20.86c-.47.75-.68 1.61-.6 2.47c.15 1.75 1.42 3.15 3.08 3.63c.52.15 1.07.21 1.64.16l19.83-1.67c2.24-.18 3.91-2.07 3.73-4.2z">
+                </path>
+              </g>
+            </svg>
+            <div class="section-title-container">
+              <div class="card-title">Listening to Spotify</div>
+              <div class="spotify-controls-wrapper" style="display: flex; gap: 8px">
+                <button id="lyrics-btn">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m11 7.601-5.994 8.19a1 1 0 0 0 .1 1.298l.817.818a1 1 0 0 0 1.314.087L15.09 12" />
+                    <path
+                      d="M16.5 21.174C15.5 20.5 14.372 20 13 20c-2.058 0-3.928 2.356-6 2-2.072-.356-2.775-3.369-1.5-4.5" />
+                    <circle cx="16" cy="7" r="5" />
+                  </svg>
+                </button>
+                <a id="open-spotify-btn" href="#" target="_blank" rel="noopener noreferrer"><svg width="16" height="16"
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path d="M15 3h6v6" />
+                    <path d="M10 14 21 3" />
+                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                  </svg></a>
+              </div>
+            </div>
+            <div id="spotify-code-container"></div>
+            <div class="spotify-container">
+              <img class="album-art" id="album-art" src="assets/placeholder.png" width="80" height="80"
+                draggable="false" />
+              <div class="spotify-info">
+                <div class="song-name" id="song-name">Not Listening</div>
+                <div class="artist-name" id="artist-name">
+                  No song currently playing.
+                </div>
+                <div class="album-name" id="album-name"></div>
+                <div class="progress-container" id="spotify-progress-container">
+                  <span class="time-display" id="time-elapsed">0:00</span>
+                  <div class="progress-bar">
+                    <div class="progress-fill" id="progress-fill"></div>
+                  </div>
+                  <span class="time-display" id="time-remaining">-0:00</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="bottom-grid">
+      <div class="section-card" id="about-me-card">
+        <div class="section-title-container">
+          <div class="card-title">About Me</div>
+          <div class="social-links">
+            <a href="https://stats.fm/mehro" target="_blank" rel="noopener noreferrer"><img
+                src="assets/icons/statsfm.png" width="22" height="22" draggable="false" /> </a><a id="discord-link"
+              href="#" target="_blank" rel="noopener noreferrer"><img src="assets/icons/discord.png" width="22"
+                height="22" draggable="false" /></a>
+          </div>
+        </div>
+        <div class="about-me-content">
+          <div class="about-section">
+            <h4>Who am I?</h4>
+            <p>
+              i'm <span class="rainbow-text" data-text="mehro">mehro</span> -
+              a
+              <span class="tooltip-trigger" style="
+                    color: #a8abaf;
+                    cursor: help;
+                    border-bottom: 1px dotted var(--text-disabled);
+                  "><span id="static-age">??</span> year old
+                <span class="tooltip-box" id="animated-age" style="
+                      font-family: monospace;
+                      font-variant-numeric: tabular-nums;
+                      width: auto;
+                      min-width: 140px;
+                    "></span> </span>&#32;hobby developer and music enjoyer from
+              <span id="cypher-text"></span>
+            </p>
+          </div>
+          <div class="about-section">
+            <h4>My Interests</h4>
+            <p>
+              i love music, no like, i
+              <span class="love-text">LOVE</span> music<span class="tooltip-trigger" style="vertical-align: top">
+                <span class="tooltip-box">although i have yet to meet someone that matches my taste
+                  :c</span> </span>. i also enjoy spending time with my friends, coding, and wasting
+              <a style="color: #767a7e">(all my)</a> time on the internet
+              <img src="assets/silly.gif" class="emote" draggable="false" />
+            </p>
+          </div>
+          <div class="about-section">
+            <div class="stamp-grid">
+              <img src="assets/88x31/mehro.gif" class="stamps-88x31" width="88" height="31" draggable="false" />
+              <img src="assets/88x31/css.gif" class="stamps-88x31" width="88" height="31" draggable="false" />
+              <img src="assets/88x31/nowebp.gif" class="stamps-88x31" width="88" height="31" draggable="false" />
+              <img src="assets/88x31/miku.gif" class="stamps-88x31" width="88" height="31" draggable="false" />
+              <img src="assets/88x31/jojo.gif" class="stamps-88x31" width="88" height="31" draggable="false" />
+              <img src="assets/88x31/thanks-for-looking.gif" class="stamps-88x31" width="88" height="31" draggable="false" />
+              <img src="assets/88x31/mlp.gif" class="stamps-88x31" width="88" height="31" draggable="false" />
+              <img src="assets/88x31/badapple.gif" class="stamps-88x31" width="88" height="31" draggable="false" />
+              <img src="assets/88x31/bestdesktop.gif" class="stamps-88x31" width="88" height="31" draggable="false" />
+              <a href="https://discord.gg/ByHUzjttqz" target="_blank"><img src="assets/88x31/discord3.gif" class="stamps-88x31" width="88" height="31" draggable="false" /></a>
+              <a href="https://github.com/Yass5002" target="_blank"><img src="assets/88x31/github-check.gif" class="stamps-88x31" width="88" height="31" draggable="false" /></a>
+              <img src="assets/88x31/blink-0.gif" class="stamps-88x31" width="88" height="31" draggable="false" />
+            </div>
+          </div>
+        </div>
+        <img src="assets/sit.png" class="about-me-image" width="227" height="371" draggable="false" />
+        <div class="views-container">
+          <div class="views-label">views</div>
+          <div id="view-counter">
+            <div class="view-spinner-container">
+              <div class="view-spinner">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="section-card" id="recent-songs-card">
+        <div class="lay-container">
+          <img src="assets/lay.png" id="lay-img" width="400" height="168" draggable="false" />
+        </div>
+        <div class="loading-overlay" id="songs-loader">
+          <span>Loading..</span>
+        </div>
+        <div class="section-title-container">
+          <div class="card-title">
+            <span id="stream-type-toggle" class="interactive-title">Recent</span>
+            Streams
+          </div>
+          <div class="controls-group">
+            <div class="search-wrapper">
+              <svg class="search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m21 21-4.34-4.34" />
+                <circle cx="11" cy="11" r="8" />
+              </svg>
+              <input id="song-search-input" placeholder="Search.." autocomplete="off" />
+              <button id="clear-search-btn">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 6 6 18" />
+                  <path d="m6 6 12 12" />
+                </svg>
+              </button>
+            </div>
+            <button id="refresh-songs-btn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z">
+                </path>
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div id="songs-list-wrapper" style="
+              position: relative;
+              flex-grow: 1;
+              display: flex;
+              flex-direction: column;
+            ">
+          <div id="recent-songs-container"></div>
+          <div id="top-songs-container" style="display: none; opacity: 0"></div>
+        </div>
+      </div>
+    </div>
+    <div id="hw-warning-popup">
+      <svg class="hw-warning-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3" />
+        <path d="M12 9v4" />
+        <path d="M12 17h.01" />
+      </svg>
+      <div class="hw-warning-text">
+        Hardware Acceleration is disabled<br /><span style="color: var(--text-secondary); font-size: 12px"
+          id="hw-warning-subtext">This may cause performance issues</span>
+      </div>
+      <button class="hw-warning-close" onclick="this.parentElement.classList.remove('visible')">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 6 6 18" />
+          <path d="m6 6 12 12" />
+        </svg>
+      </button>
+    </div>
+    <div class="media-player" id="media-player">
+      <canvas id="visualizer-canvas"></canvas><img src="#" class="media-album-art" id="media-album-art" width="48"
+        height="48" draggable="false" />
+      <div class="media-song-info">
+        <div class="media-song-title" id="media-song-title"></div>
+        <div class="media-song-artist" id="media-song-artist"></div>
+      </div>
+      <button class="media-play-pause-btn" id="media-play-pause-btn">
+        <svg class="play-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z" />
+        </svg>
+        <svg class="pause-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display: none">
+          <rect x="14" y="3" width="5" height="18" rx="1" />
+          <rect x="5" y="3" width="5" height="18" rx="1" />
+        </svg>
+        <svg class="loading-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none">
+          <circle cx="12" cy="12" r="9" stroke-dasharray="45 12" />
+        </svg>
+      </button>
+      <div class="media-controls">
+        <div class="volume-controls">
+          <button class="volume-button" id="volume-button">
+            <svg class="volume-icon-high" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path
+                d="M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z" />
+              <path d="M16 9a5 5 0 0 1 0 6" />
+              <path d="M19.364 18.364a9 9 0 0 0 0-12.728" />
+            </svg>
+            <svg class="volume-icon-low" style="display: none" width="24" height="24" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path
+                d="M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z" />
+              <path d="M16 9a5 5 0 0 1 0 6" />
+            </svg>
+            <svg class="volume-icon-muted" style="display: none" width="24" height="24" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path
+                d="M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z" />
+              <line x1="22" x2="16" y1="9" y2="15" />
+              <line x1="16" x2="22" y1="9" y2="15" />
+            </svg>
+          </button>
+          <input type="range" class="volume-slider" id="volume-slider" value="80" min="0" max="100" step="1" />
+          <span class="volume-percentage" id="volume-percentage">67%</span>
+        </div>
+        <div class="seek-controls">
+          <span class="media-time" id="media-current-time">0:00</span>
+          <input type="range" class="seek-slider" id="seek-slider" value="0" step="0.1" />
+          <span class="media-time" id="media-total-time">0:30</span>
+        </div>
+      </div>
+      <button class="close-button" id="close-button">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 6 6 18" />
+          <path d="m6 6 12 12" />
+        </svg>
+      </button>
+    </div>
+    <div id="lyrics-popup">
+      <div class="lyrics-overlay-dim" id="lyrics-overlay-dim"></div>
+      <div class="lyrics-window">
+        <div class="lyrics-backdrop" id="lyrics-backdrop"></div>
+        <button class="fullscreen-lyrics" id="fullscreen-lyrics-btn">
+          <svg class="maximize-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M8 3H5a2 2 0 0 0-2 2v3" />
+            <path d="M21 8V5a2 2 0 0 0-2-2h-3" />
+            <path d="M3 16v3a2 2 0 0 0 2 2h3" />
+            <path d="M16 21h3a2 2 0 0 0 2-2v-3" />
+          </svg>
+          <svg class="minimize-icon" style="display: none" width="20" height="20" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M8 3v3a2 2 0 0 1-2 2H3" />
+            <path d="M21 8h-3a2 2 0 0 1-2-2V3" />
+            <path d="M3 16h3a2 2 0 0 1 2 2v3" />
+            <path d="M16 21v-3a2 2 0 0 1 2-2h3" />
+          </svg>
+        </button>
+        <button class="close-lyrics" id="close-lyrics-btn">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+        <div class="lyrics-header">
+          <div class="lyrics-song-title" id="lyrics-song-title"></div>
+          <div class="lyrics-song-artist" id="lyrics-song-artist"></div>
+          <div class="unsynced-label" id="unsynced-label" style="display: none">
+            Unsynced Lyrics
+          </div>
+        </div>
+        <div class="lyrics-content" id="lyrics-content">
+          <div class="lyrics-status-message loading">Loading..</div>
+        </div>
+        <div class="lyrics-footer">
+          <div class="lyrics-progress-wrapper">
+            <span class="lyrics-time" id="lyrics-time-elapsed">0:00</span>
+            <div class="lyrics-progress-container">
+              <div class="lyrics-progress-fill" id="lyrics-progress-fill"></div>
+            </div>
+            <span class="lyrics-time" id="lyrics-time-remaining">-0:00</span>
+          </div>
+        </div>
+      </div>
+      <div class="lyrics-image">
+        <img src="assets/peek.png" class="peek-img" draggable="false" width="140" height="391" />
+      </div>
+    </div>
+    <noscript>
+      <div class="no-js-overlay">
+        <div class="no-js-message">
+          <h1>JavaScript is Required</h1>
+          <p>This website needs JavaScript to function correctly.</p>
+          <p>
+            Please enable JavaScript in your browser settings and reload the
+            page.
+          </p>
+        </div>
+      </div>
+    </noscript>
+  </div>
+</body>
+
+</html>
