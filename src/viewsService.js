@@ -34,6 +34,10 @@ function createViewsService({ dataDir = path.join(__dirname, '..'), logger = con
           user_agent TEXT,
           referer TEXT,
           path TEXT,
+          accept_language TEXT,
+          sec_ch_ua TEXT,
+          sec_ch_ua_platform TEXT,
+          sec_ch_ua_mobile TEXT,
           created_at DATETIME DEFAULT CURRENT_TIMESTAMP
         );
 
@@ -70,15 +74,19 @@ function createViewsService({ dataDir = path.join(__dirname, '..'), logger = con
 
       if (!recentHit) {
         const stmt = db.prepare(`
-          INSERT INTO page_views (ip_address, user_agent, referer, path)
-          VALUES (?, ?, ?, ?)
+          INSERT INTO page_views (ip_address, user_agent, referer, path, accept_language, sec_ch_ua, sec_ch_ua_platform, sec_ch_ua_mobile)
+          VALUES (?, ?, ?, ?, ?, ?, ?, ?)
         `);
         
         stmt.run(
           ip,
           meta.userAgent || null,
           meta.referer || null,
-          meta.path || '/'
+          meta.path || '/',
+          meta.acceptLanguage || null,
+          meta.secChUa || null,
+          meta.secChUaPlatform || null,
+          meta.secChUaMobile || null
         );
       }
     } catch (err) {

@@ -63,6 +63,7 @@ async function main() {
     const reqUrl = req.url || '/';
     const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
     const userAgent = req.headers['user-agent'] || '';
+    const acceptLanguage = req.headers['accept-language'] || '';
 
     if (config.forceHttps && !isHttpsRequest(req)) {
       const host = req.headers.host;

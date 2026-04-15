@@ -120,6 +120,10 @@ function createServer({ config, presenceService, viewsService, logger = console 
         userAgent: req.headers['user-agent'],
         referer: req.headers.referer || req.headers.referrer,
         path: req.originalUrl,
+        acceptLanguage: req.headers['accept-language'],
+        secChUa: req.headers['sec-ch-ua'],
+        secChUaPlatform: req.headers['sec-ch-ua-platform'],
+        secChUaMobile: req.headers['sec-ch-ua-mobile'],
       };
       const nextCount = await viewsService.increment(meta);
       return res.status(200).json({ ok: true, count: nextCount });
@@ -135,6 +139,10 @@ function createServer({ config, presenceService, viewsService, logger = console 
         userAgent: req.headers['user-agent'],
         referer: req.headers.referer || req.headers.referrer,
         path: req.originalUrl,
+        acceptLanguage: req.headers['accept-language'],
+        secChUa: req.headers['sec-ch-ua'],
+        secChUaPlatform: req.headers['sec-ch-ua-platform'],
+        secChUaMobile: req.headers['sec-ch-ua-mobile'],
       };
       const nextCount = await viewsService.increment(meta);
       return res.status(200).json({ count: nextCount });
