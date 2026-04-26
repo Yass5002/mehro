@@ -34,6 +34,18 @@ function isHttpsRequest(req) {
   return Boolean(req.socket && req.socket.encrypted);
 }
 
+function normalizeHostHeader(hostHeader) {
+  if (!hostHeader) return '';
+  return Array.isArray(hostHeader) ? String(hostHeader[0] || '').trim() : String(hostHeader).trim();
+}
+
+function toCanonicalHost(hostHeader) {
+  if (!hostHeader) return '';
+  return hostHeader.replace(/^www\.mehro\.me(?::(\d+))?$/i, (_match, port) =>
+    port ? `mehro.me:${port}` : 'mehro.me',
+  );
+}
+
 async function main() {
   const config = getConfig();
   const siteRoot = __dirname;
@@ -65,13 +77,17 @@ async function main() {
     const userAgent = req.headers['user-agent'] || '';
     const acceptLanguage = req.headers['accept-language'] || '';
 
-    if (config.forceHttps && !isHttpsRequest(req)) {
-      const host = req.headers.host;
-      if (host) {
-        res.writeHead(301, { Location: `https://${host}${reqUrl}` });
-        res.end();
-        return;
-      }
+    const isHttps = isHttpsRequest(req);
+    const hostHeader = normalizeHostHeader(req.headers.host);
+    const canonicalHost = toCanonicalHost(hostHeader);
+    const needsHostRedirect = Boolean(hostHeader) && canonicalHost !== hostHeader;
+    const needsHttpsRedirect = config.forceHttps && !isHttps;
+
+    if ((needsHostRedirect || needsHttpsRedirect) && canonicalHost) {
+      const protocol = config.forceHttps || isHttps ? 'https' : 'http';
+      res.writeHead(301, { Location: `${protocol}://${canonicalHost}${reqUrl}` });
+      res.end();
+      return;
     }
 
     if (isApiRoute(reqUrl, req.method || 'GET')) {

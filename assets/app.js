@@ -29,7 +29,18 @@ let progressRafId = null,
   presenceInterval = null,
   counterAssetsAvailable = null;
 const controllerRegistry = new Map(),
-  API_BASE_DEFAULT = window.location.origin,
+  API_BASE_DEFAULT = (() => {
+    try {
+      let e = window.location;
+      if ("www.mehro.me" === e.hostname) {
+        let t = e.port ? `:${e.port}` : "";
+        return `${e.protocol}//mehro.me${t}`;
+      }
+      return e.origin;
+    } catch (t) {
+      return window.location.origin;
+    }
+  })(),
   API_BASE_OVERRIDE =
     window.__MEHRO_API_BASE || localStorage.getItem("mehro_api_base"),
   PLACEHOLDER_IMG = "assets/placeholder.png",
@@ -39,7 +50,7 @@ const controllerRegistry = new Map(),
     apiBase: API_BASE_OVERRIDE || API_BASE_DEFAULT,
     fallbackBanner: "assets/banner.webp",
     fallbackAvatarDecoration:
-      "https://cdn.discordapp.com/avatar-decoration-presets/a_52fd31296f501c7875bd09b0c379c2dd.png?size=128&passthrough=true",
+      "https://cdn.discordapp.com/avatar-decoration-presets/a_0559ecfc5e0d72ed1a2c5f1a6fd84558.png?size=480&passthrough=true",
   };
 function checkHardwareAcceleration() {
   try {
@@ -480,7 +491,8 @@ function updateStatus(e) {
       offline: { icon: "assets/states/offline.png" },
     },
     w = B[e.discord_status] || B.offline;
-  u.src.endsWith(w.icon) || ((u.src = w.icon), triggerUpdateAnimation(u));
+  ((u.style.display = ""),
+    (u.src.endsWith(w.icon) || ((u.src = w.icon), triggerUpdateAnimation(u))));
   let k =
     (e.active_on_discord_web ? "w" : "") +
     (e.active_on_discord_desktop ? "d" : "") +
@@ -1583,8 +1595,8 @@ function pollPresence() {
         document.getElementById("spotify-loader")?.classList.add("hidden"),
         updateStatus(e.data));
     })
-    .catch(() => {
-      updateStatusDisconnected();
+    .catch((e) => {
+      "AbortError" !== e?.name && updateStatusDisconnected();
     });
 }
 function startPresencePolling() {
