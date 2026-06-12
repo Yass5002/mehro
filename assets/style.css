@@ -234,54 +234,7 @@ textarea {
   margin-bottom: 16px;
 }
 
-.avatar-wrapper::after {
-  content: "";
-  position: absolute;
-  top: -4px;
-  left: -4px;
-  right: -4px;
-  bottom: -4px;
-  border: 2px solid rgba(180, 0, 0, 1);
-  box-shadow: 0 0 15px rgba(180, 0, 0, 0.6), inset 0 0 10px rgba(180, 0, 0, 0.3);
-  background: rgba(180, 0, 0, 0.05);
-  pointer-events: none;
-  z-index: 1;
-  -webkit-mask-image: linear-gradient(to top left, transparent 0%, transparent 5px, black 25px);
-  mask-image: linear-gradient(to top left, transparent 0%, transparent 5px, black 25px);
-}
 
-@keyframes proxy-flicker {
-
-  0%,
-  100% {
-    opacity: 0.9;
-    box-shadow: 0 0 15px rgba(180, 0, 0, 0.6), inset 0 0 10px rgba(180, 0, 0, 0.3);
-  }
-
-  8%,
-  12% {
-    opacity: 0.6;
-    box-shadow: 0 0 8px rgba(180, 0, 0, 0.4);
-  }
-
-  10% {
-    opacity: 1;
-    box-shadow: 0 0 20px rgba(180, 0, 0, 0.9), inset 0 0 15px rgba(180, 0, 0, 0.5);
-  }
-
-  45% {
-    opacity: 0.9;
-  }
-
-  46% {
-    opacity: 0.4;
-    box-shadow: none;
-  }
-
-  47% {
-    opacity: 0.9;
-  }
-}
 
 .avatar-decoration {
   position: absolute;
