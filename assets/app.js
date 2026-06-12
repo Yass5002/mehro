@@ -462,7 +462,7 @@ function updateStatus(e) {
     c.textContent !== v && ((c.textContent = v), triggerUpdateAnimation(c));
     let h = $.avatar
       ? `https://cdn.discordapp.com/avatars/${$.id}/${$.avatar}.${$.avatar.startsWith("a_") ? "gif" : "png"}?size=128`
-      : PLACEHOLDER_IMG;
+      : `https://cdn.discordapp.com/embed/avatars/${Number((BigInt($.id) >> 22n) % 6n)}.png?size=128`;
     s.src !== h && ((s.src = h), triggerUpdateAnimation(s));
     updateDynamicFavicon(h);
     let L = $.avatar_decoration_data
