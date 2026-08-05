@@ -36,8 +36,6 @@ function getConfig(env = process.env) {
   return {
     nodeEnv: env.NODE_ENV || 'development',
     port: normalizePort(env.SERVER_PORT ?? env.PORT, 3001),
-    proxyPort: normalizePort(env.PROXY_PORT, 3002),
-    proxyAuth: env.PROXY_AUTH || null,
     discord: {
       token: env.DISCORD_BOT_TOKEN,
       userId: env.DISCORD_USER_ID,
