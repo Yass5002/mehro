@@ -1400,7 +1400,6 @@ textarea {
   height: 100px;
   z-index: 2;
   pointer-events: none;
-  opacity: 0.2;
 }
 
 .dance-gif {
