@@ -1292,24 +1292,53 @@ function applyDisplayNameScroll() {
         e.classList.add("scrolling"));
     }));
 }
-function animateCypherText(e, t) {
-  let n = document.getElementById("cypher-text");
-  if (!n) return;
-  let i =
-      "\xa1™\xa3\xa2∞\xa7\xb6•\xaa\xba–≠œ∑\xb4\xae†\xa5\xa8ˆ\xf8π“‘\xab\xe5\xdf∂ƒ\xa9˙∆˚\xac…\xe6≈\xe7√∫˜\xb5≤≥\xf7/?`~",
-    r = 0;
-  function a(s) {
-    requestAnimationFrame(a);
-    let l = s - r;
-    if (l > t) {
-      r = s - (l % t);
-      let o = "";
-      for (let c = 0; c < e; c++)
-        o += i.charAt(Math.floor(Math.random() * i.length));
-      n.textContent = o;
-    }
+function animateDecayText() {
+  let el = document.getElementById("decay-text");
+  if (!el) return;
+  let original = el.getAttribute("data-original") || el.textContent;
+  let glyphs = "\u2801\u2802\u2804\u2808\u2810\u2820\u2840\u2880\u2803\u2805\u2809\u2811\u2821\u2841\u2881\u2806\u280A\u2812\u2822\u2842\u2882\u2807\u280B\u2813\u2846\u2847\u28C0\u28E0\u28F0";
+  let chars = original.split("");
+  let display = chars.slice();
+  let decaying = new Array(chars.length).fill(false);
+
+  function render() {
+    el.textContent = display.join("");
   }
-  requestAnimationFrame(a);
+
+  function decayChar(idx) {
+    if (decaying[idx]) return;
+    decaying[idx] = true;
+    let flicks = 4 + Math.floor(Math.random() * 5);
+    let flickNum = 0;
+
+    function flick() {
+      if (flickNum < flicks) {
+        display[idx] = glyphs.charAt(Math.floor(Math.random() * glyphs.length));
+        render();
+        flickNum++;
+        setTimeout(flick, 30 + Math.random() * 50);
+      } else {
+        setTimeout(function () {
+          display[idx] = chars[idx];
+          render();
+          decaying[idx] = false;
+        }, 200 + Math.random() * 400);
+      }
+    }
+    flick();
+  }
+
+  function scheduleDecay(idx) {
+    let delay = 800 + Math.random() * 1700;
+    setTimeout(function () {
+      decayChar(idx);
+      scheduleDecay(idx);
+    }, delay);
+  }
+
+  for (let i = 0; i < chars.length; i++) {
+    setTimeout(function () { scheduleDecay(i); }, Math.random() * 1000);
+  }
 }
 (!(function () {
   let t = "made by mehro with lots of <3";
@@ -2025,6 +2054,6 @@ const playerEl = document.getElementById("media-player");
   updateLocalTime(),
   startClock(),
   loadViewCounter(),
-  animateCypherText(7, 25),
+  animateDecayText(),
   initTooltips(),
   updateAge());
