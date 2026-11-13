@@ -1595,10 +1595,27 @@ textarea {
 .peek-img {
   position: absolute;
   bottom: 16px;
-  left: -118px;
+  left: 0;
   width: 140px;
   height: auto;
   pointer-events: auto;
+  /* the image's vertical cut edge sits at 1061/1216 = 87.25% of its width;
+     shifting by that much puts it exactly on the card border at any size */
+  transform: translateX(-87.25%);
+  /* round the sweater's bottom-left corner. radius = 10% of width (122px of 1216);
+     the sweater's left edge at the top of that band is x=683 (56.17%);
+     band height = 122/3392 = 3.6% of the image height */
+  -webkit-mask-image: linear-gradient(#000 0 0), linear-gradient(#000 0 0),
+    radial-gradient(circle farthest-side at 100% 0, #000 98%, transparent 100%);
+  mask-image: linear-gradient(#000 0 0), linear-gradient(#000 0 0),
+    radial-gradient(circle farthest-side at 100% 0, #000 98%, transparent 100%);
+  -webkit-mask-size: 100% 96.42%, 33.83% 3.6%, 10% 3.6%;
+  mask-size: 100% 96.42%, 33.83% 3.6%, 10% 3.6%;
+  /* corner layer x: (100% - 10%) * p = 56.17%  ->  p = 62.41% */
+  -webkit-mask-position: 0 0, 100% 100%, 62.41% 100%;
+  mask-position: 0 0, 100% 100%, 62.41% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
 }
 
 .lyrics-backdrop {
@@ -2546,7 +2563,6 @@ textarea {
 @media (max-height: 768px) {
   .peek-img {
     width: 100px;
-    left: -85px;
   }
 }
 
